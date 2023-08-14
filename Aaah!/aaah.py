@@ -8,3 +8,4 @@ if doctor_count <= Jon_count:
     print("go")
 else:
     print("no")
+
