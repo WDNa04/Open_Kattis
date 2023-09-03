@@ -1,4 +1,4 @@
-import sys
+from sys import stdin, stdout
 
 i = 0
 listb = []
@@ -6,34 +6,33 @@ def movement(n, a,lista, m):
     global i
     global listb
     start = lista[a]
-    if start == 0:
-        print(i)
-    elif i == 0 and start == m:
-        print(i)
+    if i == 0 and start == m:
+        stdout.write('magic\n')
+        stdout.write(str(i) + '\n')
     elif a+start < 0:
         i += 1
-        print('left')
-        print(i)
+        stdout.write('left\n')
+        stdout.write(str(i) + '\n')
     elif a+start > n:
         i += 1
-        print('right')
-        print(i)
+        stdout.write('right\n')
+        stdout.write(str(i) + '\n')
     else:
         end = lista[a+start]
         i += 1
         listb.append(a)
         if end == m:
-            print('magic')
-            print(i)
+            stdout.write('magic\n')
+            stdout.write(str(i) + '\n')
         elif a+start in listb:
-            print('cycle')
-            print(i)
+            stdout.write('cycle\n')
+            stdout.write(str(i) + '\n')
         else:
             movement(n,a+start,lista,m)
 
 
-n, s, m = map(int,input().split())
+n, s, m = map(int,stdin.readline().split())
 
-lista = list(map(int,input().split()))
+lista = list(map(int,stdin.readline().split()))
 
 movement(n, s-1, lista, m)
