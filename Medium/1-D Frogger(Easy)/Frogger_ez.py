@@ -7,32 +7,27 @@ def movement(n, a,lista, m):
     global listb
     start = lista[a]
     if i == 0 and start == m:
-        stdout.write('magic\n')
-        stdout.write(str(i) + '\n')
+        return 'magic\n'+str(i)
     elif a+start < 0:
         i += 1
-        stdout.write('left\n')
-        stdout.write(str(i) + '\n')
+        return 'left\n'+str(i)
     elif a+start > n:
         i += 1
-        stdout.write('right\n')
-        stdout.write(str(i) + '\n')
+        return 'right\n'+str(i)
     else:
         end = lista[a+start]
-        i += 1
+        i+=1
         listb.append(a)
         if end == m:
-            stdout.write('magic\n')
-            stdout.write(str(i) + '\n')
+            return 'magic\n'+str(i)
         elif a+start in listb:
-            stdout.write('cycle\n')
-            stdout.write(str(i) + '\n')
+            return 'cycle\n'+str(i)
         else:
-            movement(n,a+start,lista,m)
+            return movement(n,a+start,lista,m)
 
 
 n, s, m = map(int,stdin.readline().split())
 
 lista = list(map(int,stdin.readline().split()))
 
-movement(n, s-1, lista, m)
+print(movement(n, s-1, lista, m))
